@@ -1,0 +1,41 @@
+
+// Select the database to use.
+use('Datos');
+
+// Traer todos los datos
+db.Usuarioss.find({})
+
+// Búsqueda por nombre específico:
+db.Usuarioss.find({ nombre: "Juan Guillermo" })
+
+//Búsqueda por apellido específico:
+db.Usuarioss.find({ apellido: "Pérez" })
+
+// Búsqueda por edad mayor a cierta cantidad:
+// $gt Significa "mayor que". Se utiliza para encontrar documentos donde el valor de un campo sea mayor que el valor especificado.
+db.Usuarioss.find({ edad: { $gt: 30 } })
+
+// Búsqueda por fecha de nacimiento anterior a cierta fecha:
+/*$lt Significa "menor que". Se utiliza para encontrar documentos donde el valor de un campo sea menor que el valor especificado.*/
+db.Usuarioss.find({ fecha_nacimiento: { $lt: new Date("2000-01-01") }})
+
+
+// Busqueda por datos completos
+db.Usuarioss.find({ nombre: "Alexander", Apellido: "Hernandez"})
+
+// Para eliminar un dato
+db.Usuarioss.deleteOne({ nombre: "Jaackson" })
+
+//Para eliminar varíos datos
+db.Usuarioss.deleteMany({ _id: { $in: [ObjectId("65bfc8274a4d6b31d7d0fa7f"), ObjectId("65bfdaa38367ae9a310c907e")] } }) // Filtro por los IDs de los documentos
+
+// Traer un dato mediante su ID
+db.Usuarioss.findOne({ _id:"0102" })
+
+// Traer varios ID al mismo tiempo
+/*El operador $in en MongoDB se utiliza para seleccionar aquellos documentos donde el valor de un campo coincida con alguno de los valores especificados en un arreglo.*/
+db.Usuarioss.find({ _id: { $in: [ObjectId("65bfc8274a4d6b31d7d0fa7e"), ObjectId("65bfc68a798c7ed29428e97a"), ObjectId("65bfc3d39a6fa6adac3c4a65")] } })
+ 
+
+
+
